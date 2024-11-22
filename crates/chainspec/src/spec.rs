@@ -756,7 +756,7 @@ impl ChainSpec {
     #[inline]
     pub fn is_taiko(&self) -> bool {
         let id = self.chain.id();
-        id >= 167000 && id <= 168000
+        (id >= 167000 && id <= 168000) || (id == 5167004) || (id == 18686)
     }
 
     /// Returns `true` if this chain is Optimism mainnet.
