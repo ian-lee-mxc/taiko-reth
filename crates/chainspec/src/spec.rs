@@ -170,6 +170,43 @@ pub static MOONCHAIN_GENEVA: Lazy<Arc<ChainSpec>> = Lazy::new(|| {
     .into()
 });
 
+/// The Moonchain Mainnet spec
+pub static MOONCHAIN_MAINNET: Lazy<Arc<ChainSpec>> = Lazy::new(|| {
+    ChainSpec {
+        chain: 18686.into(),
+        genesis_hash: None,
+        paris_block_and_final_difficulty: None,
+        hardforks: BTreeMap::from([
+            (Hardfork::Frontier, ForkCondition::Block(0)),
+            (Hardfork::Homestead, ForkCondition::Block(0)),
+            (Hardfork::Dao, ForkCondition::Block(0)),
+            (Hardfork::Tangerine, ForkCondition::Block(0)),
+            (Hardfork::SpuriousDragon, ForkCondition::Block(0)),
+            (Hardfork::Byzantium, ForkCondition::Block(0)),
+            (Hardfork::Constantinople, ForkCondition::Block(0)),
+            (Hardfork::Petersburg, ForkCondition::Block(0)),
+            (Hardfork::Istanbul, ForkCondition::Block(0)),
+            (Hardfork::Berlin, ForkCondition::Block(0)),
+            (Hardfork::London, ForkCondition::Block(0)),
+            (
+                Hardfork::Paris,
+                ForkCondition::TTD { fork_block: None, total_difficulty: U256::from(0) },
+            ),
+            (Hardfork::Shanghai, ForkCondition::Timestamp(0)),
+            #[cfg(feature = "taiko")]
+            (Hardfork::Hekla, ForkCondition::Block(0)),
+            #[cfg(feature = "taiko")]
+            (
+                Hardfork::Ontake,
+                ForkCondition::Block(0),
+            ),
+        ]),
+        deposit_contract: None,
+        ..Default::default()
+    }
+    .into()
+});
+
 /// The Taiko devnet spec
 pub static TAIKO_DEV: Lazy<Arc<ChainSpec>> = Lazy::new(|| {
     ChainSpec {
